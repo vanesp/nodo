@@ -1,0 +1,31 @@
+!!! 5
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    != SocketStream
+    title Nodo Demo
+  body
+   #content
+      a(href='http://www.escurio.com/')
+        img(src='/images/logo.png', alt='Escurio', width=130, height=50)
+      h1 Nodo demo
+
+      #demo
+        p: label
+          input#switch1(type='checkbox',name='switch1')
+          | Lampen
+        p: label
+          input#switch3(type='checkbox',name='switch3')
+          | Plafondlamp
+        p: label
+          input#switch2(type='checkbox',name='switch2')
+          | Staande lamp
+
+        p: label
+          input#status(type='submit',name='status',value='status')  
+        P: label  
+          input#clear(type='submit',name='clear',value='clear')  
+
+      #demo 
+        h3 Received messages:
+        #chatlog
