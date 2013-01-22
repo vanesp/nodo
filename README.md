@@ -6,6 +6,23 @@ lights via the KAKU (Klik Aan-Klik Uit) commands.
 
 ## Requirements
 
+### Daemon installation
+  
+The file called nodo needs to be copied to /etc/init.d to start it up automatically,
+and it needs to be initialised by root as:
+
+    update-rc.d nodo defaults
+
+To remove, execute
+
+    update-rc.d nodo remove
+
+Note that user www-data needs access to the serial port, and needs to be added to the group tty and dialout
+with the command
+
+    sudo usermod -a -G tty www-data
+    sudo usermod -a -G dialout www-data
+
 ### Redis Installation
 Download, extract and compile Redis with:
 
@@ -68,5 +85,15 @@ Redis will now start following the next boot process. You may now use the follow
 Install interfaces for Node
 
     $ sudo npm install -d redis connect-redis
+
+### Monitoring what happens with Redis
+
+Start the following series of commands to be able to spot what goes on under the hood!
+
+    /opt/redis/redis-cli
+    redis 127.0.0.1:6379> monitor
+    OK
+    
+
 
 

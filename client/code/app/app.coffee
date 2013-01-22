@@ -11,6 +11,28 @@ ss.event.on "newMessage", (message) ->
   # Append it to the #chatlog div and show effect
   $(html).hide().appendTo("#chatlog").slideDown()
 
+ss.event.on "portux", (object) ->
+  
+  message = object.type + ' ' + object.location + ': '+ object.value + ' ' + object.quantity
+  # Example of using the Hogan Template in client/templates/chat/message.jade to generate HTML for each message
+  html = ss.tmpl["chat-message"].render(
+    message: message
+    time: ->
+      timestamp()
+  )
+  
+  # Append it to the #chatlog div and show effect
+  $(html).hide().appendTo("#chatlog").slideDown()
+
+  # html = ss.tmpl["chat-dashboard"].render(
+  #  location: location
+  #  type: type
+  #  value: value
+  #  quantity: quantity
+  # )
+  
+  # $(html).replaceAll("#dashboard")
+
 # Handle clicks on the switch
 
 $("#switch1").on "click", (a,b,c) ->
