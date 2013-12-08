@@ -10,8 +10,19 @@ ss.event.on "newMessage", (message) ->
   
   # Append it to the #chatlog div and show effect
   $(html).hide().appendTo("#chatlog").slideDown()
+  
+  # now try to figure out the message
+  # check for Direction=Input, Event=(...)
+  # set the state
 
 ss.event.on "portux", (object) ->
+
+  # store this in the session store
+  # req.use 'session'
+  # req.session.value = object
+  # req.session.save
+  # console.log "Data saved"
+  # console.log object
   
   message = object.type + ' ' + object.location + ': '+ object.value + ' ' + object.quantity
   # Example of using the Hogan Template in client/templates/chat/message.jade to generate HTML for each message
@@ -21,6 +32,19 @@ ss.event.on "portux", (object) ->
       timestamp()
   )
   
+  # if the event is motion, switch on the light
+  # if object.type is "Motion"  and object.location is 3
+  #    $('#switch2').prop('checked', true)
+  #    send 'SendNewKaku 3,On;'
+  
+  # Handle messages of the type Switch 3 true (to switch 3 on) or Switch 2 false
+  if object.type is "Switch" 
+     sw = '#switch' + object.location
+     if object.location is 2 then cmd = 'SendNewKaku 3' else cmd = 'SendKAKU E' + object.location;
+     if object.value then cmd += ',On;' else cmd += ',Off;'
+     $(sw).prop('checked', object.value)
+     send cmd
+        
   # Append it to the #chatlog div and show effect
   $(html).hide().appendTo("#chatlog").slideDown()
 
@@ -37,7 +61,7 @@ ss.event.on "portux", (object) ->
 
 $("#switch1").on "click", (a,b,c) ->
   state = $('#switch1').prop('checked')
-  send if state then 'SendKAKU E1, On;' else 'SendKAKU E1,Off;'
+  send if state then 'SendKAKU E1,On;' else 'SendKAKU E1,Off;'
 
 $("#switch2").on "click", (a,b,c) ->
   state = $('#switch2').prop('checked')
@@ -45,7 +69,7 @@ $("#switch2").on "click", (a,b,c) ->
 
 $("#switch3").on "click", (a,b,c) ->
   state = $('#switch3').prop('checked')
-  send if state then 'SendKAKU E3, On;' else 'SendKAKU E3,Off;'
+  send if state then 'SendKAKU E3,On;' else 'SendKAKU E3,Off;'
 
 $("#switch4").on "click", (a,b,c) ->
   state = $('#switch4').prop('checked')
