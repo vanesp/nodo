@@ -75,7 +75,7 @@ $("#switch4").on "click", (a,b,c) ->
   state = $('#switch4').prop('checked')
   send if state then 'Status All;' else 'Status All;'
 
-# and a click on the 'clear' button
+# and a click on the 'Status' button
 $("#status").on "click", (a,b,c) ->
   send 'Status All;'
 

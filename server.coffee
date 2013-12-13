@@ -23,8 +23,13 @@ ss.client.templateEngine.use require('ss-hogan')
 # PvE: incorporate redis for state information
 # see https://github.com/socketstream/socketstream/blob/master/doc/guide/en/rpc_responder.md
 # or: https://github.com/felixge/node-mysql
-ss.session.store.use ('redis');
-ss.publish.transport.use ('redis');
+# host changed to the Portux machine
+ss.session.store.use 'redis' 
+    host: 'portux.local'
+
+# ss.publish.transport.use ('redis');
+ss.publish.transport.use 'redis', 
+    host: 'portux.local' 
 
 # Minimize and pack assets if you type: SS_ENV=production node app.js
 ss.client.packAssets()  if ss.env is 'production'
