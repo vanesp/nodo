@@ -19,9 +19,10 @@ Socketstream specification:
  The parameters for the messages we send look as follows:
  
     type        = Switch (to control a switch setting) or Motion (for a motion event)
-    location    = 1,2,3,4 (corresponding to switch etc) or 3 for Woonkamer, and 2 for Study
-    quantity    = empty
-    value       = is 1 for a motion event, and true or false for On or Off
+    location    = 3 for Woonkamer, and 2 for Study. For a Switch these may contain values
+                  1..4 or any other named switches if these switches are defined in the code
+    quantity    = for a Switch this contains the body of the string to be sent to the Nodo
+    value       = is 1 for a motion event, and a true for On, or false for Off
     
 Motion events are just show in the log. Switch events cause the app to send a command to
 the Nodo which switches the corresponding switch via rs-232 interface to the Nodo device.

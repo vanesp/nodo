@@ -40,8 +40,11 @@ ss.event.on "portux", (object) ->
   # Handle messages of the type Switch 3 true (to switch 3 on) or Switch 2 false
   if object.type is "Switch" 
      sw = '#switch' + object.location
-     if object.location is 2 then cmd = 'SendNewKaku 3' else cmd = 'SendKAKU E' + object.location;
-     if object.value then cmd += ',On;' else cmd += ',Off;'
+     # the cmd is now in the quantity field
+     # if object.location is 2 then cmd = 'SendNewKaku 3' else cmd = 'SendKAKU E' + object.location;
+     cmd = object.quantity
+     if object.value then cmd += 'On;' else cmd += 'Off;'
+     
      $(sw).prop('checked', object.value)
      send cmd
         
