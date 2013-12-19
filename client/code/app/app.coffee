@@ -39,14 +39,13 @@ ss.event.on "portux", (object) ->
   
   # Handle messages of the type Switch 3 true (to switch 3 on) or Switch 2 false
   if object.type is "Switch" 
-     sw = '#switch' + object.location
+     sw = object.location
      # the cmd is now in the quantity field
-     # if object.location is 2 then cmd = 'SendNewKaku 3' else cmd = 'SendKAKU E' + object.location;
      cmd = object.quantity
      if object.value then cmd += 'On;' else cmd += 'Off;'
+     send cmd
      
      $(sw).prop('checked', object.value)
-     send cmd
         
   # Append it to the #chatlog div and show effect
   $(html).hide().appendTo("#chatlog").slideDown()
@@ -62,7 +61,7 @@ ss.event.on "portux", (object) ->
 
 # Handle clicks on the switch
 
-$("#switch1").on "click", (a,b,c) ->
+$("switch1").on "click", (a,b,c) ->
   state = $('#switch1').prop('checked')
   send if state then 'SendKAKU E1,On;' else 'SendKAKU E1,Off;'
 
@@ -76,7 +75,12 @@ $("#switch3").on "click", (a,b,c) ->
 
 $("#switch4").on "click", (a,b,c) ->
   state = $('#switch4').prop('checked')
-  send if state then 'Status All;' else 'Status All;'
+  send if state then 'SendNewKaku 1,On;' else 'SendNewKaku 1,Off;'
+
+$("#teach").on "click", (a,b,c) ->
+  send 'SendNewKaku 2,On;'
+
+
 
 # and a click on the 'Status' button
 $("#status").on "click", (a,b,c) ->
