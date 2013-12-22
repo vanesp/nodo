@@ -25,12 +25,15 @@ ss.event.on "portux", (object) ->
   # console.log object
   
   message = object.type + ' ' + object.location + ': '+ object.value + ' ' + object.quantity
-  # Example of using the Hogan Template in client/templates/chat/message.jade to generate HTML for each message
-  html = ss.tmpl["chat-message"].render(
-    message: message
-    time: ->
-      timestamp()
-  )
+  
+  # skip if it is a Tick message
+  if object.type isnt "Tick"
+      # Example of using the Hogan Template in client/templates/chat/message.jade to generate HTML for each message
+      html = ss.tmpl["chat-message"].render(
+        message: message
+        time: ->
+          timestamp()
+      )
   
   # if the event is motion, switch on the light
   # if object.type is "Motion"  and object.location is 3
