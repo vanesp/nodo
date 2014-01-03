@@ -83,8 +83,6 @@ $("#switch4").on "click", (a,b,c) ->
 $("#teach").on "click", (a,b,c) ->
   send 'SendNewKaku 2,On;'
 
-
-
 # and a click on the 'Status' button
 $("#status").on "click", (a,b,c) ->
   send 'Status All;'

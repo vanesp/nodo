@@ -8,30 +8,41 @@ html(lang='en')
    #content
       a(href='http://www.escurio.com/')
         img(src='/images/logo.png', alt='Escurio', width=130, height=50)
-      h1 Nodo demo
 
       #buttons
-        p: label
-          input#switch1(type='checkbox',name='switch1')
-          | Lampen
-        p: label
-          input#switch3(type='checkbox',name='switch3')
-          | Plafondlamp
-        p: label
-          input#switch2(type='checkbox',name='switch2')
-          | Plafonniere (Kerstboom)
-
-        p: label
-          input#switch4(type='checkbox',name='switch4')
-          | Studeerkamerkast
-
-        p: label
-          input#teach(type='submit',name='NewKaku 2', value='teach')
-
-        p: label
-          input#status(type='submit',name='status',value='status')  
-        P: label  
-          input#clear(type='submit',name='clear',value='clear')  
+        table
+          tbody
+            tr
+              td
+                p: label
+                  input#switch1(type='checkbox',name='switch1')
+                  | Lampen
+              td
+                p: label
+                  input#switch3(type='checkbox',name='switch3')
+                  | Plafondlamp
+            tr
+              td
+                p: label
+                  input#switch2(type='checkbox',name='switch2')
+                  | Plafonniere (Kerstboom)
+              td
+                p: label
+                  input#switch4(type='checkbox',name='switch4')
+                  | Studeerkamerkast
+            tr
+              td
+                p: label
+                  input#teach(type='submit',name='NewKaku 2',value='teach')
+              td
+                p: label
+                  input#status(type='submit',name='status',value='status')  
+            tr
+              td
+                p: label  
+                  input#clear(type='submit',name='clear',value='clear')  
+              td
+              
 
       #demo 
         h3 Received messages:
