@@ -64,7 +64,7 @@ ss.event.on "portux", (object) ->
 
 # Handle clicks on the switch
 
-$("switch1").on "click", (a,b,c) ->
+$("#switch1").on "click", (a,b,c) ->
   state = $('#switch1').prop('checked')
   send if state then 'SendKAKU E1,On;' else 'SendKAKU E1,Off;'
 
