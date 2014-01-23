@@ -11,6 +11,7 @@
     "ss-jade": "0.1.x",
     "ss-stylus": "0.1.x",
     "ss-hogan": "0.1.x",
+    "redis": "0.1.x",
     "serialport": "1.0.8"
   }
 }

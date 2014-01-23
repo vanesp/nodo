@@ -10,21 +10,17 @@ ss.event.on "newMessage", (message) ->
   
   # Append it to the #chatlog div and show effect
   $(html).hide().appendTo("#chatlog").slideDown()
-  
-  # now try to figure out the message
-  # check for Direction=Input, Event=(...)
-  # set the state
 
 ss.event.on "portux", (object) ->
-
-  # store this in the session store
-  # req.use 'session'
-  # req.session.value = object
-  # req.session.save
-  # console.log "Data saved"
-  # console.log object
-  
   message = object.type + ' ' + object.location + ': '+ object.value + ' ' + object.quantity
+
+  # Handle messages of the type Switch 3 true (to switch 3 on) or Switch 2 false
+#  if object.type is "Switch" 
+#    sw = object.location
+    # the cmd is now in the quantity field
+#    cmd = object.quantity
+#    if object.value then cmd += 'On;' else cmd += 'Off;'
+#    send cmd
   
   # skip if it is a Tick message
   if object.type isnt "Tick"
@@ -34,33 +30,9 @@ ss.event.on "portux", (object) ->
         time: ->
           timestamp()
       )
-  
-  # if the event is motion, switch on the light
-  # if object.type is "Motion"  and object.location is 3
-  #    $('#switch2').prop('checked', true)
-  #    send 'SendNewKaku 3,On;'
-  
-  # Handle messages of the type Switch 3 true (to switch 3 on) or Switch 2 false
-  if object.type is "Switch" 
-     sw = object.location
-     # the cmd is now in the quantity field
-     cmd = object.quantity
-     if object.value then cmd += 'On;' else cmd += 'Off;'
-     send cmd
-     
-     $(sw).prop('checked', object.value)
         
   # Append it to the #chatlog div and show effect
   $(html).hide().appendTo("#chatlog").slideDown()
-
-  # html = ss.tmpl["chat-dashboard"].render(
-  #  location: location
-  #  type: type
-  #  value: value
-  #  quantity: quantity
-  # )
-  
-  # $(html).replaceAll("#dashboard")
 
 # Handle clicks on the switch
 

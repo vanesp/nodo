@@ -16,7 +16,7 @@ cmd="nodemon server.coffee"
 name=`basename $0`
 pid_file="/var/run/$name.pid"
 stdout_log="/var/log/$name.log"
-stderr_log="/var/log/$name.log"
+stderr_log="/var/log/$name.error.log"
 
 get_pid() {
     cat "$pid_file"    
